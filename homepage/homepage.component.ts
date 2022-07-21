@@ -8,20 +8,42 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  user:any;
-  
+
+  users:any;
+
+  vehicles:any;
+
+  planets:any;
+
   HttpClient: any;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getCharacter();
+    this.getCharacters();
+    this.getVehicles();
+    this.getPlanets();
   }
-
-  getCharacter(){
-    this.http.get<any>('https://swapi.dev/api/people/3/')
+  // ************ etre vivants
+  getCharacters(){
+    this.http.get<any>('https://swapi.dev/api/people/')
       .subscribe(data => {
-            this.user = data.name;
+            this.users = data.count;
         })
   }
+  // ********** véhicule recensés
+  getVehicles(){
+    this.http.get<any>('https://swapi.dev/api/vehicles/')
+      .subscribe(data => {
+            this.vehicles = data.count;
+        })
+  }
+  // ********* planetes recensées
+  getPlanets(){
+    this.http.get<any>('https://swapi.dev/api/planets/')
+      .subscribe(data => {
+            this.planets = data.count;
+        })
+  }
+
 }

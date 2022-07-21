@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class IndexShowPlanetsComponent implements OnInit {
 
-  user:any;
+  planets:any;
   gender:any;
   HttpClient: any;
 
@@ -16,14 +16,13 @@ export class IndexShowPlanetsComponent implements OnInit {
 
   // envoie de la requette
   ngOnInit(): void {
-    this.getCharacter();
+    this.getPlanets();
   }
 // fonction de récupération de l'api
-  getCharacter(){
-    this.Http.get<any>('https://swapi.dev/api/people/1')
+  getPlanets(){
+    this.Http.get<any>('https://swapi.dev/api/people')
       .subscribe(data => {
-            this.user = data.name;
-            console.log(data);
+            this.planets = data.name;
             
         })
   }
